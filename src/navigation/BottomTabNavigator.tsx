@@ -9,7 +9,7 @@ import {useTheme} from '../hooks/useTheme.ts';
 
 export type BottomTabParamList = {
   HomeScreen: undefined;
-  AddToDoScreen: undefined;
+  AddPostScreen: undefined;
   ProfileScreen: undefined;
 };
 
@@ -27,6 +27,7 @@ export const BottomTabNavigator = () => {
         },
         tabBarActiveTintColor: colors.brown_1,
         tabBarInactiveTintColor: colors.white,
+        tabBarHideOnKeyboard: true,
       }}>
       <Tab.Screen
         options={{
@@ -47,7 +48,7 @@ export const BottomTabNavigator = () => {
       />
       <Tab.Screen
         options={{
-          title: 'AddToDo',
+          title: 'AddPost',
           tabBarLabelStyle: {
             fontFamily: fonts.nunitoBlack,
             fontSize: 15,
@@ -60,7 +61,7 @@ export const BottomTabNavigator = () => {
           ),
           tabBarIconStyle: {paddingBottom: 35},
         }}
-        name={BottomTabScreen.AddToDoScreen}
+        name={BottomTabScreen.AddPostScreen}
         component={AddToDoScreen}
       />
       <Tab.Screen

@@ -1,5 +1,5 @@
 export enum BottomTabScreen {
   HomeScreen = 'HomeScreen',
-  AddToDoScreen = 'AddToDoScreen',
+  AddPostScreen = 'AddPostScreen',
   ProfileScreen = 'ProfileScreen',
 }
