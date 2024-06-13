@@ -2,11 +2,11 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 type TThemeState = 'light' | 'dark';
 
-export interface IAuthState {
+export interface IThemeState {
   mode: TThemeState;
 }
 
-const initialState: IAuthState = {
+const initialState: IThemeState = {
   mode: 'light',
 };
 

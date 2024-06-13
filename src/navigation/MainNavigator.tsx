@@ -7,9 +7,12 @@ import {fetchSunriseSunset} from '../services/fetchSunriseSunset';
 import {isDaytime} from '../services/getDaytime';
 import {useDispatch} from 'react-redux';
 import {setTheme} from '../store/reducers';
+import {useNetInfo} from '@react-native-community/netinfo';
+import {setAppConnection} from '../store/reducers/app';
 
 export const MainNavigator = () => {
   const dispatch = useDispatch();
+  const {isConnected} = useNetInfo();
   const {Lat, Lng} = getUserLocation();
 
   // setTheme for app
@@ -25,6 +28,7 @@ export const MainNavigator = () => {
     };
 
     loadDaytimeStatus().then();
+    dispatch(setAppConnection(!!isConnected));
   }, []);
 
   return (
