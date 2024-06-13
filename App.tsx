@@ -12,18 +12,13 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import {store} from './src/store';
+import {MainNavigator} from './src/navigation/MainNavigator.tsx';
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        {/*<MainNavigator />*/}
+        <MainNavigator />
         <StatusBar barStyle={'dark-content'} />
       </SafeAreaProvider>
     </Provider>
