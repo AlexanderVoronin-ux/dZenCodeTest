@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 type TThemeState = 'light' | 'dark';
 
@@ -13,7 +13,13 @@ const initialState: IAuthState = {
 const themeSlice = createSlice({
   name: 'theme',
   initialState,
-  reducers: {},
+  reducers: {
+    setTheme(state, {payload}: PayloadAction<TThemeState>) {
+      state.mode = payload;
+    },
+  },
 });
+
+export const {setTheme} = themeSlice.actions;
 
 export default themeSlice.reducer;

@@ -5,6 +5,7 @@ import {AddToDoScreen, HomeScreen, ProfileScreen} from '../screens';
 import {colors} from '../../assets/colors';
 import {Image} from 'react-native';
 import {fonts} from '../constants/fonts';
+import {useTheme} from '../hooks/useTheme.ts';
 
 export type BottomTabParamList = {
   HomeScreen: undefined;
@@ -15,13 +16,14 @@ export type BottomTabParamList = {
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 export const BottomTabNavigator = () => {
+  const theme = useTheme();
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          borderTopColor: colors.blue_3,
-          backgroundColor: colors.blue,
+          borderTopColor: theme.backgroundTabs,
+          backgroundColor: theme.backgroundTabs,
         },
         tabBarActiveTintColor: colors.brown_1,
         tabBarInactiveTintColor: colors.white,
