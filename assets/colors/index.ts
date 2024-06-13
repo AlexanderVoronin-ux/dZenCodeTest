@@ -1,0 +1,18 @@
+export const colors = {
+  white: '#fff',
+  white_1: '#964b00',
+  brown: '#857777',
+  brown_1: '#db9a04',
+  blue: '#229ef8',
+  blue_1: '#4c669f',
+  blue_2: '#3b5998',
+  blue_3: '#192f6a',
+  red: '#bc3e3e',
+  red_1: '#fa5252',
+  red_2: '#9c3333',
+  red_3: '#fb6868',
+  red_4: '#fda9a9',
+  yellow: '#f5c71a',
+  black: '#000000',
+  transparency: '#00000000',
+};
