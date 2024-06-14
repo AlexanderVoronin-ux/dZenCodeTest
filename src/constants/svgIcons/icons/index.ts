@@ -1,18 +1,8 @@
-import ChevronUpSVG from './chevron-up.svg';
-import ChevronDownSVG from './chevron-down.svg';
-import ChevronLeftSVG from './chevronLeft.svg';
-import CheckSVG from './check.svg';
-import EditSVG from './edit.svg';
-import HomeSVG from './homeIcon.svg';
-import SendSVG from './send.svg';
+import PhotoSVG from './PhotoSVG.tsx';
+import DeleteSVG from './DeleteSVG.tsx';
 
 export const ICONS = {
-  ChevronUpSVG,
-  ChevronDownSVG,
-  ChevronLeftSVG,
-  CheckSVG,
-  EditSVG,
-  HomeSVG,
-  SendSVG,
+  PhotoSVG,
+  DeleteSVG,
 };
 export type IconTypes = keyof typeof ICONS;

@@ -20,7 +20,7 @@ export function SVGIcon({
   color,
   ...props
 }: IconProps): JSX.Element {
-  const Icon = ICONS[name] || ICONS.SendSVG;
+  const Icon = ICONS[name] || ICONS.PhotoSVG;
   return (
     <Icon
       width={width || size}

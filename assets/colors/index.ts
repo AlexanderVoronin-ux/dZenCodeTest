@@ -14,5 +14,6 @@ export const colors = {
   red_4: '#fda9a9',
   yellow: '#f5c71a',
   black: '#000000',
+  pink: '#FFF0FB',
   transparency: '#00000000',
 };

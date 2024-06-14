@@ -17,6 +17,14 @@ end
 target 'dZenCodeTest' do
   config = use_native_modules!
 
+  permissions_path = '../node_modules/react-native-permissions/ios'
+
+    pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
+    pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
+    pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse.podspec"
+    pod 'Permission-MediaLibrary', :path => "#{permissions_path}/MediaLibrary.podspec"
+    pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary.podspec"
+
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.

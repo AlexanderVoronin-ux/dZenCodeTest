@@ -1,3 +1,3 @@
 export * from './HomeScreen';
-export * from './AddToDoScreen';
+export * from './AddPostScreen';
 export * from './ProfileScreen';
