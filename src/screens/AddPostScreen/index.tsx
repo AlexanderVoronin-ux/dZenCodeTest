@@ -23,13 +23,18 @@ import {SVGIcon} from '../../constants/svgIcons';
 import {
   launchImageLibrary,
   ImageLibraryOptions,
-  Asset,
 } from 'react-native-image-picker';
 import {permissionsForStorage} from '../../services/permissions';
-import {colors} from '../../../assets/colors';
-import {AVATAR_IMG, DELETE_BTN, DELETE_CTR} from './styles.ts';
+import {addPost} from '../../api/postsApi.ts';
+import {
+  CommonActions,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
+import {BottomTabScreen} from '../../navigation/constants.ts';
 
-type Form = {
+export type Form = {
   username: string;
   email: string;
   homePage: string;
@@ -42,13 +47,25 @@ const imagePickerOptions: ImageLibraryOptions = {
   includeBase64: false,
 };
 
-export const AddToDoScreen = () => {
+export const AddPostScreen = () => {
+  const route =
+    useRoute<
+      RouteProp<
+        {params: {replyTo: string | undefined; fromHomeScreen: boolean}},
+        'params'
+      >
+    >();
+  const replyTo =
+    route?.params?.replyTo !== undefined ? route?.params?.replyTo : null;
+
   const theme = useTheme();
-  const [avatarFile, setAvatarFile] = useState<Asset | undefined>(undefined);
+  const [avatarUri, setAvatarUri] = useState<string>();
+  const navigation = useNavigation();
 
   const {
     control,
     handleSubmit,
+    reset,
     formState: {errors},
   } = useForm<Form>({
     mode: 'all',
@@ -66,14 +83,28 @@ export const AddToDoScreen = () => {
     recaptchaRef.current?.open();
   };
 
-  const onSubmit = (data: Form) => {
+  const onSubmit = async (data: Form) => {
     console.log('data', data);
+    await addPost({
+      data,
+      replyTo: replyTo,
+      avatar: avatarUri,
+      onSuccess: () => {
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: BottomTabScreen.HomeScreen}],
+          }),
+        );
+        reset();
+      },
+    });
   };
 
   const handleVerify = (token: GoogleRecaptchaToken) => {
     console.log('Recaptcha Token:', token);
     if (!!token) {
-      if (!!avatarFile) {
+      if (!!avatarUri) {
         handleSubmit(onSubmit)();
       } else {
         Alert.alert('Warning', 'Please add the avatar image');
@@ -90,7 +121,7 @@ export const AddToDoScreen = () => {
       if (res) {
         launchImageLibrary(imagePickerOptions, e => {
           const imageFile = e.assets?.[0];
-          setAvatarFile(imageFile);
+          setAvatarUri(imageFile?.uri);
         }).then();
       }
     });
@@ -107,20 +138,20 @@ export const AddToDoScreen = () => {
             <TouchableOpacity
               style={S.SEND_BTN}
               onPress={selectImageFromGallery}>
-              {!avatarFile ? (
+              {!avatarUri ? (
                 <SVGIcon name={'PhotoSVG'} width={50} height={50} />
               ) : (
                 <Image
                   style={S.AVATAR_IMG}
-                  source={{uri: avatarFile?.uri}}
+                  source={{uri: avatarUri}}
                   resizeMode={'cover'}
                 />
               )}
             </TouchableOpacity>
-            {!!avatarFile && (
+            {!!avatarUri && (
               <TouchableOpacity
                 style={S.DELETE_BTN}
-                onPress={() => setAvatarFile(undefined)}>
+                onPress={() => setAvatarUri(undefined)}>
                 <SVGIcon name={'DeleteSVG'} />
               </TouchableOpacity>
             )}
@@ -213,7 +244,7 @@ export const AddToDoScreen = () => {
           </View>
         </View>
 
-        <View style={S.MT10}>
+        <View style={[S.MT10, {paddingHorizontal: 16}]}>
           <Button
             color={theme.backgroundTabs}
             title="Send"

@@ -8,13 +8,13 @@ interface ILocation {
 
 export const getUserLocation = () => {
   const [location, setLocation] = useState<ILocation>({
-    latitude: 50,
-    longitude: 50,
+    latitude: 0,
+    longitude: 0,
   });
 
   useEffect(() => {
     GetLocation.getCurrentPosition({
-      enableHighAccuracy: true,
+      enableHighAccuracy: false,
       timeout: 60000,
     })
       .then(location => {

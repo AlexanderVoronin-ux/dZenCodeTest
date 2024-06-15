@@ -6,9 +6,7 @@
  */
 
 import React from 'react';
-import {StatusBar, useColorScheme} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import {store} from './src/store';
@@ -19,7 +17,7 @@ function App(): React.JSX.Element {
     <Provider store={store}>
       <SafeAreaProvider>
         <MainNavigator />
-        <StatusBar barStyle={'dark-content'} />
+        <StatusBar barStyle={'light-content'} />
       </SafeAreaProvider>
     </Provider>
   );

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "651684464217",
+    "project_id": "dzencodetest-2477e",
+    "storage_bucket": "dzencodetest-2477e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651684464217:android:dac30133df3ddd01615348",
+        "android_client_info": {
+          "package_name": "com.dzencodetest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3GZPsGjyatOqTqWe07UssZhP1BC1Ztk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

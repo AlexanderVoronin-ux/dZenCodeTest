@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomTabScreen} from './constants';
-import {AddToDoScreen, HomeScreen, ProfileScreen} from '../screens';
+import {AddPostScreen, HomeScreen, ProfileScreen} from '../screens';
 import {colors} from '../../assets/colors';
 import {Image} from 'react-native';
 import {fonts} from '../constants/fonts';
@@ -9,7 +9,7 @@ import {useTheme} from '../hooks/useTheme.ts';
 
 export type BottomTabParamList = {
   HomeScreen: undefined;
-  AddPostScreen: undefined;
+  AddPostScreen: {replyTo: string} | undefined;
   ProfileScreen: undefined;
 };
 
@@ -19,6 +19,13 @@ export const BottomTabNavigator = () => {
   const theme = useTheme();
   return (
     <Tab.Navigator
+      screenListeners={({navigation}) => {
+        return {
+          tabPress: () => {
+            navigation.setParams({replyTo: null});
+          },
+        };
+      }}
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -28,6 +35,7 @@ export const BottomTabNavigator = () => {
         tabBarActiveTintColor: colors.brown_1,
         tabBarInactiveTintColor: colors.white,
         tabBarHideOnKeyboard: true,
+        unmountOnBlur: true,
       }}>
       <Tab.Screen
         options={{
@@ -62,7 +70,7 @@ export const BottomTabNavigator = () => {
           tabBarIconStyle: {paddingBottom: 35},
         }}
         name={BottomTabScreen.AddPostScreen}
-        component={AddToDoScreen}
+        component={AddPostScreen}
       />
       <Tab.Screen
         options={{

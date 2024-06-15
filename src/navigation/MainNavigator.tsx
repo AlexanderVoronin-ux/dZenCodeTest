@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {BottomTabNavigator} from './BottomTabNavigator';
@@ -8,7 +8,8 @@ import {isDaytime} from '../services/getDaytime';
 import {useDispatch} from 'react-redux';
 import {setTheme} from '../store/reducers';
 import {useNetInfo} from '@react-native-community/netinfo';
-import {setAppConnection} from '../store/reducers/app';
+import {setAppConnection} from '../store/reducers';
+import {permissionsForGeolocation} from '../services/permissions';
 
 export const MainNavigator = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ export const MainNavigator = () => {
     };
 
     loadDaytimeStatus().then();
+
+    permissionsForGeolocation().then();
+
     dispatch(setAppConnection(!!isConnected));
   }, []);
 
