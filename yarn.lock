@@ -2400,9 +2400,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/app@npm:^18.8.0":
-  version: 18.9.0
-  resolution: "@react-native-firebase/app@npm:18.9.0"
+"@react-native-firebase/app@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/app@npm:20.1.0"
   dependencies:
     opencollective-postinstall: ^2.0.3
     superstruct: ^0.6.2
@@ -2413,25 +2413,25 @@ __metadata:
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 5d415a6bef49ea4a2ccb7ba550c3163b09a7c8d93a9e2a3c48449d6c34b7e7ba146e4736cbbbc87ef3c72e1cd6f56771a80760171f12ef1da94683b2cfb0589c
+  checksum: 85e509be9dedfca72552b1e393c020ef1de1e5604078ad9da262719f9ce17a9c4be89a66d4db70615865846afdaa1bf34c2a614275b50fb8e6ab86368a21e1be
   languageName: node
   linkType: hard
 
-"@react-native-firebase/firestore@npm:^18.8.0":
-  version: 18.9.0
-  resolution: "@react-native-firebase/firestore@npm:18.9.0"
+"@react-native-firebase/firestore@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/firestore@npm:20.1.0"
   peerDependencies:
-    "@react-native-firebase/app": 18.9.0
-  checksum: c0ec9349051560822157beb2af3a401beb874fa59e9a2eb2e44b78dc31f500c7a88425cca445dd7010a3a3b036b94565b1468b7ab5e40130ed5392b11b95289e
+    "@react-native-firebase/app": 20.1.0
+  checksum: ceb28720f786f406765ccd9219bc0069cda137e0fc399253e82a846a93716f6c97c2a6d629eedbac92f5e16612dba799580d50f6c3f619b6904ddfb775d3c88a
   languageName: node
   linkType: hard
 
-"@react-native-firebase/storage@npm:^18.8.0":
-  version: 18.9.0
-  resolution: "@react-native-firebase/storage@npm:18.9.0"
+"@react-native-firebase/storage@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/storage@npm:20.1.0"
   peerDependencies:
-    "@react-native-firebase/app": 18.9.0
-  checksum: 891eee473dc7c9c6131556b1586bec13ee8186cc43c5a9a7c326078a0a658c915db1bb8970d8431b1a9162a2e781971aae3980582dbcb49e2dd079ae48496773
+    "@react-native-firebase/app": 20.1.0
+  checksum: 67c91a60b404767d1d5b76e6456397cc88dadafe8ddbb41206d259a3d9df01c27667b2863b7c3528e726317d4a8e83ccce9e0ea4d1da324a5a47f81e324c0a0d
   languageName: node
   linkType: hard
 
@@ -4520,9 +4520,9 @@ __metadata:
     "@babel/runtime": ^7.20.0
     "@gorhom/bottom-sheet": ^4.6.1
     "@react-native-community/netinfo": ^11.3.2
-    "@react-native-firebase/app": ^18.8.0
-    "@react-native-firebase/firestore": ^18.8.0
-    "@react-native-firebase/storage": ^18.8.0
+    "@react-native-firebase/app": ^20.1.0
+    "@react-native-firebase/firestore": ^20.1.0
+    "@react-native-firebase/storage": ^20.1.0
     "@react-native/babel-preset": 0.74.84
     "@react-native/eslint-config": 0.74.84
     "@react-native/metro-config": 0.74.84

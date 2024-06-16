@@ -53,9 +53,6 @@ target 'dZenCodeTest' do
   config = use_native_modules!
     use_frameworks! :linkage => :static
 
-    pod 'Firebase', :modular_headers => true
-    pod 'FirebaseCore', :modular_headers => true
-    pod 'GoogleUtilities', :modular_headers => true
     $RNFirebaseAsStaticFramework = true
 
   use_react_native!(
