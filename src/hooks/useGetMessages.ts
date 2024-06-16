@@ -31,7 +31,7 @@ export const useGetMessages = () => {
           } as Message);
         });
         setMessages(messages);
-        setTotalPages(messages.filter(m => m.parentId === null).length);
+        setTotalPages(messages.filter(m => m.parentId === null).length - 1);
       });
 
     return () => unsubscribe();
