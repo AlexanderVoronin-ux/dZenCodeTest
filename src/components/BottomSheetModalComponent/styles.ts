@@ -2,7 +2,6 @@ import {TextStyle, ViewStyle} from 'react-native';
 
 import {fonts} from '../../constants/fonts';
 import {Colors} from '../../constants/theme';
-import {colors} from '../../../assets/colors';
 
 export const TEXT_MODAL_CTR: ViewStyle = {
   width: '100%',
@@ -15,5 +14,5 @@ export const TITLE_MODAL = (theme: Colors, isSelected: boolean): TextStyle => ({
   color: theme.text,
   textAlign: 'center',
   paddingVertical: 10,
-  backgroundColor: isSelected ? colors.white : undefined,
+  backgroundColor: isSelected ? theme.backgroundTabs : undefined,
 });
