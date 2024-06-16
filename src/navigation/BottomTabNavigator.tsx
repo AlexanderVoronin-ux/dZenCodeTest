@@ -1,9 +1,10 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Image} from 'react-native';
+
 import {BottomTabScreen} from './constants';
 import {AddPostScreen, HomeScreen, ProfileScreen} from '../screens';
 import {colors} from '../../assets/colors';
-import {Image} from 'react-native';
 import {fonts} from '../constants/fonts';
 import {useTheme} from '../hooks/useTheme.ts';
 

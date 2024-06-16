@@ -6,6 +6,8 @@ import firestore, {
 import {useTheme} from './useTheme.ts';
 import {Message} from '../screens';
 
+export type TSort = 'asc' | 'desc';
+
 const ref = firestore().collection('posts');
 
 export const useGetMessages = () => {
@@ -15,10 +17,11 @@ export const useGetMessages = () => {
   useState<FirebaseFirestoreTypes.DocumentSnapshot | null>(null);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const [sortByTimestamp, setSortByTimestamp] = useState<TSort>('desc');
 
   useEffect(() => {
     const unsubscribe = ref
-      .orderBy('createdAt', 'desc')
+      .orderBy('createdAt', sortByTimestamp)
       .onSnapshot(querySnapshot => {
         const messages: Message[] = [];
         querySnapshot.forEach(documentSnapshot => {
@@ -32,7 +35,7 @@ export const useGetMessages = () => {
       });
 
     return () => unsubscribe();
-  }, []);
+  }, [sortByTimestamp]);
 
   return {
     totalPages,
@@ -40,5 +43,7 @@ export const useGetMessages = () => {
     setCurrentPage,
     messages,
     theme,
+    setSortByTimestamp,
+    sortByTimestamp,
   };
 };

@@ -1,12 +1,14 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Colors} from '../../../../constants/theme';
+import {SVGIcon} from '../../../../constants/svgIcons';
 import * as S from '../../styles.ts';
 
 interface PaginationButtonsProps {
   currentPage: number;
   totalPages: number;
   handlePageClick: (page: number) => void;
+  handleSort: () => void;
   theme: Colors;
 }
 
@@ -15,6 +17,7 @@ export const PaginationButtons: React.FC<PaginationButtonsProps> = ({
   totalPages,
   handlePageClick,
   theme,
+  handleSort,
 }) => {
   const maxButtonsToShow = 5;
   let startPage = Math.max(0, currentPage - Math.floor(maxButtonsToShow / 2));
@@ -36,5 +39,12 @@ export const PaginationButtons: React.FC<PaginationButtonsProps> = ({
     );
   }
 
-  return <View style={S.PAGIN_CTR(theme)}>{buttons}</View>;
+  return (
+    <View style={S.PAGIN_CTR(theme)}>
+      {buttons}
+      <TouchableOpacity style={{marginLeft: 20}} onPress={() => handleSort()}>
+        <SVGIcon name={'SortSvg'} color={theme.text} />
+      </TouchableOpacity>
+    </View>
+  );
 };
