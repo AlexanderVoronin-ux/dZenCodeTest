@@ -28,7 +28,7 @@ export const PaginationButtons: React.FC<PaginationButtonsProps> = ({
   }
 
   const buttons = [];
-  for (let i = startPage; i < endPage; i++) {
+  for (let i = startPage; i <= endPage; i++) {
     buttons.push(
       <TouchableOpacity
         key={i}
