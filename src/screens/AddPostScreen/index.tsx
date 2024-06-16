@@ -59,7 +59,7 @@ export const AddPostScreen = () => {
     route?.params?.replyTo !== undefined ? route?.params?.replyTo : null;
 
   const theme = useTheme();
-  const [avatarUri, setAvatarUri] = useState<string>();
+  const [avatarUri, setAvatarUri] = useState<string>('');
   const navigation = useNavigation();
 
   const {
@@ -84,7 +84,6 @@ export const AddPostScreen = () => {
   };
 
   const onSubmit = async (data: Form) => {
-    console.log('data', data);
     await addPost({
       data,
       replyTo: replyTo,
@@ -121,7 +120,7 @@ export const AddPostScreen = () => {
       if (res) {
         launchImageLibrary(imagePickerOptions, e => {
           const imageFile = e.assets?.[0];
-          setAvatarUri(imageFile?.uri);
+          if (!!imageFile?.uri) setAvatarUri(imageFile.uri);
         }).then();
       }
     });
@@ -151,7 +150,7 @@ export const AddPostScreen = () => {
             {!!avatarUri && (
               <TouchableOpacity
                 style={S.DELETE_BTN}
-                onPress={() => setAvatarUri(undefined)}>
+                onPress={() => setAvatarUri('')}>
                 <SVGIcon name={'DeleteSVG'} />
               </TouchableOpacity>
             )}

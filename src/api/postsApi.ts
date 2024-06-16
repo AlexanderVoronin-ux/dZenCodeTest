@@ -1,5 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 import {Alert} from 'react-native';
+
 import {Form} from '../screens';
 
 const ref = firestore().collection('posts');
@@ -7,9 +9,23 @@ const ref = firestore().collection('posts');
 export interface ISendPostReq {
   data: Form;
   replyTo: string | null;
-  avatar: string | undefined;
+  avatar: string;
   onSuccess: () => void;
 }
+
+const uploadImage = async (imageUri: string) => {
+  const filename = imageUri.substring(imageUri.lastIndexOf('/') + 1);
+
+  const task = storage().ref(filename).putFile(imageUri);
+
+  try {
+    await task;
+
+    return await storage().ref(filename).getDownloadURL();
+  } catch (e) {
+    console.error(e);
+  }
+};
 
 export const addPost = async ({
   data,
@@ -20,15 +36,17 @@ export const addPost = async ({
   const timestamp = firestore.FieldValue.serverTimestamp();
   try {
     if (data.description.trim()) {
-      ref
-        .add({
-          text: data.description,
-          username: data.username,
-          parentId: replyTo,
-          createdAt: timestamp,
-          avatar,
-        })
-        .then(() => onSuccess());
+      uploadImage(avatar).then(avatarUri => {
+        ref
+          .add({
+            text: data.description,
+            username: data.username,
+            parentId: replyTo,
+            createdAt: timestamp,
+            avatar: avatarUri,
+          })
+          .then(() => onSuccess());
+      });
     }
   } catch (e) {
     Alert.alert('Warning', 'Ooops, something went wrong');

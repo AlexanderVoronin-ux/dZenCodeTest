@@ -45,8 +45,8 @@ export const MessageComponent: React.FC<MessageProps> = ({
         <Text style={S.USER_NAME_TXT(theme)}>{message.username}</Text>
         <Text style={S.TIME_TXT(theme)}>
           {moment(
-            message.createdAt.seconds * 1000 +
-              message.createdAt.nanoseconds / 1000,
+            message.createdAt?.seconds * 1000 +
+              message.createdAt?.nanoseconds / 1000,
           ).calendar()}
         </Text>
 
