@@ -18,7 +18,7 @@ export const useGetMessages = () => {
 
   useEffect(() => {
     const unsubscribe = ref
-      .orderBy('createdAt', 'asc')
+      .orderBy('createdAt', 'desc')
       .onSnapshot(querySnapshot => {
         const messages: Message[] = [];
         querySnapshot.forEach(documentSnapshot => {

@@ -35,7 +35,6 @@ export const BottomTabNavigator = () => {
         tabBarActiveTintColor: colors.brown_1,
         tabBarInactiveTintColor: colors.white,
         tabBarHideOnKeyboard: true,
-        unmountOnBlur: true,
       }}>
       <Tab.Screen
         options={{
@@ -61,6 +60,7 @@ export const BottomTabNavigator = () => {
             fontFamily: fonts.nunitoBlack,
             fontSize: 15,
           },
+          unmountOnBlur: true,
           tabBarIcon: () => (
             <Image
               source={require('../constants/svgIcons/icons/plusGif.gif')}

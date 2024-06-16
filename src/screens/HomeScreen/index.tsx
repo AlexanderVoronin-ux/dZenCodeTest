@@ -51,8 +51,7 @@ export const HomeScreen = () => {
       <FlatList
         data={messages
           .filter(m => m.parentId === null)
-          .splice(currentPage * PAGE_SIZE, PAGE_SIZE)
-          .reverse()}
+          .splice(currentPage * PAGE_SIZE, PAGE_SIZE)}
         renderItem={({item}) => renderMessage(item)}
         keyExtractor={item => item.id}
         inverted={true}
