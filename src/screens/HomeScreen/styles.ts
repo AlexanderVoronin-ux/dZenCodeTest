@@ -1,6 +1,7 @@
 import {ImageStyle, TextStyle, ViewStyle} from 'react-native';
 import {Colors} from '../../constants/theme';
 import {fonts} from '../../constants/fonts';
+import {colors} from '../../../assets/colors';
 
 export const SAFE_AREA = (theme: Colors): ViewStyle => ({
   flex: 1,
@@ -61,7 +62,7 @@ export const PAGIN_BTN = (theme: Colors): ViewStyle => ({
   backgroundColor: theme.backgroundTabs,
 });
 export const ACTIVE_BTN: ViewStyle = {
-  backgroundColor: '#22c55d',
+  backgroundColor: colors.gren,
   width: 50,
   height: 50,
   borderRadius: 25,

@@ -1,13 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  FlatList,
-  View,
-  Text,
-  Button,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView, FlatList, View, Text, Button, Image} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import {TabActions, useNavigation} from '@react-navigation/native';
@@ -15,6 +7,7 @@ import {BottomTabScreen} from '../../navigation/constants.ts';
 import {useTheme} from '../../hooks/useTheme.ts';
 import moment from 'moment';
 import * as S from './styles';
+import {PaginationButtons} from './components/PaginationButtons';
 
 type Message = {
   id: string;
@@ -60,30 +53,6 @@ export const HomeScreen = () => {
     setCurrentPage(p);
   };
 
-  const renderPaginationButtons = () => {
-    const maxButtonsToShow = 5;
-    let startPage = Math.max(0, currentPage - Math.floor(maxButtonsToShow / 2));
-    let endPage = Math.min(totalPages, startPage + maxButtonsToShow - 1);
-
-    if (endPage - startPage + 1 < maxButtonsToShow) {
-      startPage = Math.max(0, endPage - maxButtonsToShow + 1);
-    }
-    const buttons = [];
-
-    for (let i = startPage; i < endPage; i++) {
-      buttons.push(
-        <TouchableOpacity
-          key={i}
-          onPress={() => handlePageClick(i)}
-          style={[S.PAGIN_BTN(theme), i === currentPage ? S.ACTIVE_BTN : null]}>
-          <Text style={S.BTN_TEXT(theme)}>{i + 1}</Text>
-        </TouchableOpacity>,
-      );
-    }
-
-    return buttons;
-  };
-
   const renderMessage = (message: Message, level = 0) => {
     return (
       <View key={message.id} style={[S.MESSAGE_CTR, {marginLeft: level * 20}]}>
@@ -124,7 +93,12 @@ export const HomeScreen = () => {
 
   return (
     <SafeAreaView style={S.SAFE_AREA(theme)}>
-      <View style={S.PAGIN_CTR(theme)}>{renderPaginationButtons()}</View>
+      <PaginationButtons
+        currentPage={currentPage}
+        totalPages={totalPages}
+        theme={theme}
+        handlePageClick={handlePageClick}
+      />
       <FlatList
         data={messages
           .filter(m => m.parentId === null)

@@ -15,5 +15,6 @@ export const colors = {
   yellow: '#f5c71a',
   black: '#000000',
   pink: '#FFF0FB',
+  gren: '#22c55d',
   transparency: '#00000000',
 };
