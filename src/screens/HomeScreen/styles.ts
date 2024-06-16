@@ -5,7 +5,6 @@ import {colors} from '../../../assets/colors';
 
 export const SAFE_AREA = (theme: Colors): ViewStyle => ({
   flex: 1,
-  padding: 10,
   backgroundColor: theme.backgroundColor,
 });
 

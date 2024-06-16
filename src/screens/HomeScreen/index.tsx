@@ -1,5 +1,5 @@
 import React, {useCallback, useRef} from 'react';
-import {SafeAreaView, FlatList} from 'react-native';
+import {SafeAreaView, FlatList, View} from 'react-native';
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 
 import {PaginationButtons} from './components/PaginationButtons';
@@ -71,6 +71,7 @@ export const HomeScreen = () => {
         renderItem={({item}) => renderMessage(item)}
         keyExtractor={item => item.id}
         inverted={true}
+        contentContainerStyle={{padding: 10}}
       />
       <BottomSheetModalComponent
         ref={bottomSheetModalRef}
