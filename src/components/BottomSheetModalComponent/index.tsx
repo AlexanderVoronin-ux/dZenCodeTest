@@ -6,8 +6,6 @@ import {useBottomSheetModal} from '@gorhom/bottom-sheet';
 import {useTheme} from '../../hooks/useTheme.ts';
 import {TSort} from '../../hooks/useGetMessages.ts';
 import * as S from './styles.ts';
-import {colors} from '../../../assets/colors';
-import {TITLE_MODAL} from './styles.ts';
 
 interface IBottomSheetModalProps {
   setSortByTimestamp: (value: TSort) => void;
