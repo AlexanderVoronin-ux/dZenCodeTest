@@ -2382,7 +2382,7 @@ PODS:
   - RNFBApp (18.9.0):
     - Firebase/CoreOnly (= 10.20.0)
     - React-Core
-  - RNFBFirestore (18.8.0):
+  - RNFBFirestore (18.9.0):
     - Firebase/Firestore (= 10.20.0)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - React-Core
@@ -2796,7 +2796,7 @@ SPEC CHECKSUMS:
   ReactNativeGetLocation: d8e41c5d499fd26f308502405cadb1f59e6179d6
   RNDeviceInfo: b899ce37a403a4dea52b7cb85e16e49c04a5b88e
   RNFBApp: 9b25191f7a5e72c185b7e43fffb0d906869c4659
-  RNFBFirestore: 2ed2073fc9c4d8951f267d1cbadc3b384e948141
+  RNFBFirestore: be3b76650231721bad4e9b28bf3a09a3ce62f8bb
   RNGestureHandler: 20a4307fd21cbff339abfcfa68192f3f0a6a518b
   RNPermissions: 0b2565b0621409f368ee5032e1c1380233cb8917
   RNReanimated: 967ae35616ef948658afa75d24595d4584051540

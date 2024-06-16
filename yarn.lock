@@ -2417,12 +2417,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/firestore@npm:18.8.0":
-  version: 18.8.0
-  resolution: "@react-native-firebase/firestore@npm:18.8.0"
+"@react-native-firebase/firestore@npm:^18.8.0":
+  version: 18.9.0
+  resolution: "@react-native-firebase/firestore@npm:18.9.0"
   peerDependencies:
-    "@react-native-firebase/app": 18.8.0
-  checksum: 084d3947a8478aca0f509f413edb3d0f33c2d7f9db0afd19f762d6a937db9ec53c7fde98556a0467d3c2eb474fcb30ffbc92301fc2f1446d75a63d79cb3be8c4
+    "@react-native-firebase/app": 18.9.0
+  checksum: c0ec9349051560822157beb2af3a401beb874fa59e9a2eb2e44b78dc31f500c7a88425cca445dd7010a3a3b036b94565b1468b7ab5e40130ed5392b11b95289e
   languageName: node
   linkType: hard
 
@@ -4512,7 +4512,7 @@ __metadata:
     "@gorhom/bottom-sheet": ^4.6.1
     "@react-native-community/netinfo": ^11.3.2
     "@react-native-firebase/app": ^18.8.0
-    "@react-native-firebase/firestore": 18.8.0
+    "@react-native-firebase/firestore": ^18.8.0
     "@react-native/babel-preset": 0.74.84
     "@react-native/eslint-config": 0.74.84
     "@react-native/metro-config": 0.74.84
