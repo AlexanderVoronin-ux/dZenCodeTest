@@ -5,9 +5,9 @@ import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import {PaginationButtons} from './components/PaginationButtons';
 import {MessageComponent} from './components/Message';
 import {useGetMessages} from '../../hooks/useGetMessages.ts';
-import * as S from './styles';
-import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import {BottomSheetModalComponent} from '../../components';
+import * as S from './styles';
 
 export type Message = {
   id: string;
