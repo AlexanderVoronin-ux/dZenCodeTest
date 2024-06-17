@@ -35,7 +35,7 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import {BottomTabScreen} from '../../navigation/constants.ts';
-import {updateMessages} from '../../store/reducers';
+import {setLoading, updateMessages} from '../../store/reducers';
 import * as S from './styles.ts';
 
 export type Form = {
@@ -53,7 +53,9 @@ const imagePickerOptions: ImageLibraryOptions = {
 
 export const AddPostScreen = () => {
   const dispatch = useDispatch();
-  const messageId = uuid.v4();
+  const navigation = useNavigation();
+  const theme = useTheme();
+  const [avatarUri, setAvatarUri] = useState<string>('');
 
   const route =
     useRoute<
@@ -64,10 +66,7 @@ export const AddPostScreen = () => {
     >();
   const replyTo =
     route?.params?.replyTo !== undefined ? route?.params?.replyTo : null;
-
-  const theme = useTheme();
-  const [avatarUri, setAvatarUri] = useState<string>('');
-  const navigation = useNavigation();
+  const messageId = uuid.v4();
 
   const {
     control,
@@ -91,34 +90,41 @@ export const AddPostScreen = () => {
   };
 
   const onSubmit = async (data: Form) => {
-    const timestamp = Date.now();
-    dispatch(
-      updateMessages({
-        id: `${messageId}`,
-        description: data.description,
-        username: data.username,
-        email: data.email,
-        createdAt: timestamp,
+    try {
+      dispatch(setLoading(true));
+      const timestamp = Date.now();
+      dispatch(
+        updateMessages({
+          id: `${messageId}`,
+          description: data.description,
+          username: data.username,
+          email: data.email,
+          createdAt: timestamp,
+          parentId: replyTo,
+          avatar: avatarUri,
+          homePage: data.homePage,
+          loading: false,
+        }),
+      );
+      await addPost({
+        data,
         parentId: replyTo,
         avatar: avatarUri,
-        homePage: data.homePage,
-        loading: false,
-      }),
-    );
-    await addPost({
-      data,
-      parentId: replyTo,
-      avatar: avatarUri,
-      id: `${messageId}`,
-      loading: true,
-    });
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{name: BottomTabScreen.HomeScreen}],
-      }),
-    );
-    reset();
+        id: `${messageId}`,
+        loading: true,
+      });
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: BottomTabScreen.HomeScreen}],
+        }),
+      );
+      reset();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
 
   const handleVerify = (token: GoogleRecaptchaToken) => {

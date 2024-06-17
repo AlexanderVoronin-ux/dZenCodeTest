@@ -6,7 +6,7 @@ import firestore, {
 import {useTheme} from './useTheme.ts';
 import {Message} from '../screens';
 import {useDispatch, useSelector} from 'react-redux';
-import {s_App, s_Messages} from '../store/selectors';
+import {s_App, s_Loading, s_Messages} from '../store/selectors';
 import {updateMessagesFromDataBase} from '../store/reducers';
 import {addPost} from '../api/postsApi.ts';
 
@@ -19,6 +19,7 @@ export const useGetMessages = () => {
   const dispatch = useDispatch();
   const messagesS = useSelector(s_Messages);
   const isConnected = useSelector(s_App);
+  const isLoading = useSelector(s_Loading);
 
   useState<FirebaseFirestoreTypes.DocumentSnapshot | null>(null);
   const [totalPages, setTotalPages] = useState<number>(0);
@@ -77,7 +78,7 @@ export const useGetMessages = () => {
       }
     };
 
-    if (isConnected) {
+    if (isConnected && !isLoading) {
       const messagesForUpload = messages.filter(item => !item.loading);
       if (messagesForUpload) {
         uploadMessages(messagesForUpload).then();

@@ -6,17 +6,22 @@ type TAppState = boolean;
 export interface IAppState {
   isAppConnect: TAppState;
   messages: Message[];
+  loading: boolean;
 }
 
 const initialState: IAppState = {
   isAppConnect: false,
   messages: [],
+  loading: false,
 };
 
 const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
+    setLoading(state, {payload}: PayloadAction<boolean>) {
+      state.loading = payload;
+    },
     setAppConnection(state, {payload}: PayloadAction<TAppState>) {
       state.isAppConnect = payload;
     },
@@ -33,7 +38,11 @@ const appSlice = createSlice({
   },
 });
 
-export const {setAppConnection, updateMessages, updateMessagesFromDataBase} =
-  appSlice.actions;
+export const {
+  setAppConnection,
+  updateMessages,
+  setLoading,
+  updateMessagesFromDataBase,
+} = appSlice.actions;
 
 export default appSlice.reducer;

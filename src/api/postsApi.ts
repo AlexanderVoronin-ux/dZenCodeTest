@@ -18,7 +18,6 @@ const uploadImage = async (imageUri: string) => {
   const filename = imageUri.substring(imageUri.lastIndexOf('/') + 1);
 
   const task = storage().ref(filename).putFile(imageUri);
-  console.log('3333---');
 
   try {
     await task;
@@ -40,8 +39,6 @@ export const addPost = async ({
   try {
     if (data.description.trim()) {
       uploadImage(avatar).then(avatarUri => {
-        console.log('555----');
-
         ref.add({
           id,
           description: data.description,
