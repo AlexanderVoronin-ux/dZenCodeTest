@@ -31,7 +31,15 @@ export const useGetMessages = () => {
           } as Message);
         });
         setMessages(messages);
-        setTotalPages(messages.filter(m => m.parentId === null).length - 1);
+        const totalPagesCount = messages.filter(
+          m => m.parentId === null,
+        ).length;
+
+        if (!totalPagesCount) {
+          setTotalPages(0);
+        } else {
+          setTotalPages(totalPagesCount - 1);
+        }
       });
 
     return () => unsubscribe();
