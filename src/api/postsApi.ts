@@ -7,16 +7,18 @@ import {Form} from '../screens';
 const ref = firestore().collection('posts');
 
 export interface ISendPostReq {
+  id: string;
   data: Form;
-  replyTo: string | null;
+  parentId: string | null;
   avatar: string;
-  onSuccess: () => void;
+  loading: boolean;
 }
 
 const uploadImage = async (imageUri: string) => {
   const filename = imageUri.substring(imageUri.lastIndexOf('/') + 1);
 
   const task = storage().ref(filename).putFile(imageUri);
+  console.log('3333---');
 
   try {
     await task;
@@ -29,23 +31,27 @@ const uploadImage = async (imageUri: string) => {
 
 export const addPost = async ({
   data,
-  replyTo,
+  parentId,
   avatar,
-  onSuccess,
+  id,
+  loading,
 }: ISendPostReq) => {
-  const timestamp = firestore.FieldValue.serverTimestamp();
+  const timestamp = Date.now();
   try {
     if (data.description.trim()) {
       uploadImage(avatar).then(avatarUri => {
-        ref
-          .add({
-            text: data.description,
-            username: data.username,
-            parentId: replyTo,
-            createdAt: timestamp,
-            avatar: avatarUri,
-          })
-          .then(() => onSuccess());
+        console.log('555----');
+
+        ref.add({
+          id,
+          description: data.description,
+          username: data.username,
+          parentId,
+          createdAt: timestamp,
+          avatar: avatarUri,
+          homePage: data.homePage,
+          loading,
+        });
       });
     }
   } catch (e) {

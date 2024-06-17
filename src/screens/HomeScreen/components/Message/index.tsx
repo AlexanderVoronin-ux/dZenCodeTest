@@ -44,16 +44,15 @@ export const MessageComponent: React.FC<MessageProps> = ({
         </View>
         <Text style={S.USER_NAME_TXT(theme)}>{message.username}</Text>
         <Text style={S.TIME_TXT(theme)}>
-          {moment(
-            message.createdAt?.seconds * 1000 +
-              message.createdAt?.nanoseconds / 1000,
-          ).calendar()}
+          {moment(message.createdAt).calendar()}
         </Text>
 
         <Button title="Reply" onPress={handleReply} />
       </View>
-      <Text style={S.MESSAGE_TXT(theme)}>{message.text}</Text>
-
+      <Text style={S.MESSAGE_TXT(theme)}>{message.description}</Text>
+      {!!message?.homePage && (
+        <Text style={S.MESSAGE_TXT(theme)}>{message.homePage}</Text>
+      )}
       {messages
         .filter(m => m.parentId === message.id)
         .map(m => renderMessage(m, level + 1))}

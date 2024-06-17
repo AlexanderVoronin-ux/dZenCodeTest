@@ -1,6 +1,5 @@
 import React, {useCallback, useRef} from 'react';
-import {SafeAreaView, FlatList, View} from 'react-native';
-import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+import {SafeAreaView, FlatList} from 'react-native';
 
 import {PaginationButtons} from './components/PaginationButtons';
 import {MessageComponent} from './components/Message';
@@ -11,11 +10,14 @@ import * as S from './styles';
 
 export type Message = {
   id: string;
-  text: string;
+  description: string;
   parentId: string | null;
-  avatar: string | undefined;
+  email: string;
+  avatar: string;
   username: string;
-  createdAt: FirebaseFirestoreTypes.Timestamp;
+  homePage: string;
+  createdAt: number;
+  loading: boolean;
 };
 
 const PAGE_SIZE = 1;

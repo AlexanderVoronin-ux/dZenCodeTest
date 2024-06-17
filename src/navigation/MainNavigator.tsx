@@ -31,9 +31,11 @@ export const MainNavigator = () => {
     loadDaytimeStatus().then();
 
     permissionsForGeolocation().then();
-
-    dispatch(setAppConnection(!!isConnected));
   }, []);
+
+  useEffect(() => {
+    dispatch(setAppConnection(!!isConnected));
+  }, [isConnected]);
 
   return (
     <NavigationContainer>

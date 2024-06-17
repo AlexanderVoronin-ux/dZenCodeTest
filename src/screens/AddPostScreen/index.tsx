@@ -10,14 +10,16 @@ import {
 } from 'react-native';
 import {Controller, useForm} from 'react-hook-form';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {CustomInput} from '../../components';
-import {handleEmailValidation} from '../../services/emailValidation';
-import {validateDescription} from '../../services/validateDescription';
+import {useDispatch} from 'react-redux';
 import GoogleRecaptcha, {
   GoogleRecaptchaToken,
   GoogleRecaptchaRefAttributes,
 } from 'react-native-google-recaptcha';
-import * as S from './styles.ts';
+import uuid from 'react-native-uuid';
+
+import {CustomInput} from '../../components';
+import {handleEmailValidation} from '../../services/emailValidation';
+import {validateDescription} from '../../services/validateDescription';
 import {useTheme} from '../../hooks/useTheme.ts';
 import {SVGIcon} from '../../constants/svgIcons';
 import {
@@ -33,6 +35,8 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import {BottomTabScreen} from '../../navigation/constants.ts';
+import {updateMessages} from '../../store/reducers';
+import * as S from './styles.ts';
 
 export type Form = {
   username: string;
@@ -48,6 +52,9 @@ const imagePickerOptions: ImageLibraryOptions = {
 };
 
 export const AddPostScreen = () => {
+  const dispatch = useDispatch();
+  const messageId = uuid.v4();
+
   const route =
     useRoute<
       RouteProp<
@@ -84,20 +91,34 @@ export const AddPostScreen = () => {
   };
 
   const onSubmit = async (data: Form) => {
+    const timestamp = Date.now();
+    dispatch(
+      updateMessages({
+        id: `${messageId}`,
+        description: data.description,
+        username: data.username,
+        email: data.email,
+        createdAt: timestamp,
+        parentId: replyTo,
+        avatar: avatarUri,
+        homePage: data.homePage,
+        loading: false,
+      }),
+    );
     await addPost({
       data,
-      replyTo: replyTo,
+      parentId: replyTo,
       avatar: avatarUri,
-      onSuccess: () => {
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{name: BottomTabScreen.HomeScreen}],
-          }),
-        );
-        reset();
-      },
+      id: `${messageId}`,
+      loading: true,
     });
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{name: BottomTabScreen.HomeScreen}],
+      }),
+    );
+    reset();
   };
 
   const handleVerify = (token: GoogleRecaptchaToken) => {
